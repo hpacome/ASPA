@@ -1,0 +1,100 @@
+<div class="page-content">
+  <div *ngIf="!complete" class="form-v4-content">
+    <div class="form-left">
+      <h2>INFOMATION</h2>
+      <p class="text-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.</p>
+      <p class="text-2"><span>Eu ultrices:</span> Vitae auctor eu augue ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.</p>
+      <div class="form-left-last">
+        <input type="submit" name="account" class="account" value="Sign in" (click)="gotoLogin()">
+      </div>
+    </div>
+    <form class="form-detail" [formGroup]="registrationService.formModel" autocomplete="off" (ngSubmit)="onSubmit()">
+      <h2>REGISTER FORM</h2>
+      <div class="form-group">
+        <div class="form-row form-row-1 has-float-label" [ngClass]="{'input-invalid': registrationService.formModel.get('FirstName').touched && registrationService.formModel.get('FirstName').errors != null}">
+          <input type="text" formControlName="FirstName" id="FirstName" class="form-control input-text" placeholder=" ">
+          <label for="FirstName">First Name</label>
+          <span *ngIf="registrationService.formModel.get('FirstName').touched && registrationService.formModel.get('FirstName').errors?.required"
+                class="e-error"
+                id="FirstName-info">
+            Enter first name
+          </span>
+        </div>
+        <div class="form-row form-row-1 has-float-label" [ngClass]="{'input-invalid': registrationService.formModel.get('LastName').touched && registrationService.formModel.get('LastName').errors != null}">
+          <input type="text" formControlName="LastName" id="LastName" class="form-control input-text" placeholder=" ">
+          <label for="LastName">Last Name</label>
+          <span *ngIf="registrationService.formModel.get('LastName').touched && registrationService.formModel.get('LastName').errors?.required"
+                class="e-error"
+                id="FirstName-info">
+            Enter last name
+          </span>
+        </div>
+      </div>
+      <div class="form-row has-float-label" [ngClass]="{'input-invalid': registrationService.formModel.get('Email').touched && registrationService.formModel.get('Email').errors != null}">
+        <input type="text" formControlName="Email" id="Email" class="form-control input-text" placeholder=" " required>
+        <label for="Email">Email</label>
+        <span *ngIf="registrationService.formModel.get('Email').touched && registrationService.formModel.get('Email').errors?.required"
+              class="e-error"
+              id="FirstName-info">
+          Enter email address
+        </span>
+        <span *ngIf="registrationService.formModel.get('Email').touched && registrationService.formModel.get('Email').errors?.email"
+              class="e-error"
+              id="FirstName-info">
+          Enter a valid email address
+        </span>
+      </div>
+      <div class="form-group" formGroupName="Passwords">
+        <div class="form-row form-row-1 has-float-label" [ngClass]="{'input-invalid': registrationService.formModel.get('Passwords.Password').touched && registrationService.formModel.get('Passwords.Password').errors != null}">
+          <input type="password" formControlName="Password" id="Password" class="form-control input-text" placeholder=" " required>
+          <label for="Password">Password</label>
+          <span *ngIf="registrationService.formModel.get('Passwords.Password').touched && registrationService.formModel.get('Passwords.Password').errors?.required"
+                class="e-error"
+                id="FirstName-info">
+            Enter a password
+          </span>
+          <span *ngIf="registrationService.formModel.get('Passwords.Password').touched && registrationService.formModel.get('Passwords.Password').errors?.pattern"
+                class="e-error"
+                id="FirstName-info">
+            Use 8 characters or more with a mix of lowercase and upercase letters, numbers and symbols
+          </span>
+        </div>
+        <div class="form-row form-row-1 has-float-label" [ngClass]="{'input-invalid': registrationService.formModel.get('Passwords.ConfirmPassword').touched && registrationService.formModel.get('Passwords.ConfirmPassword').errors != null}">
+          <input type="password" formControlName="ConfirmPassword" id="ConfirmPassword" class="form-control input-text" placeholder=" " required>
+          <label for="ConfirmPassword">Comfirm Password</label>
+          <span *ngIf="registrationService.formModel.get('Passwords.ConfirmPassword').touched && registrationService.formModel.get('Passwords.ConfirmPassword').errors?.required"
+                class="e-error"
+                id="FirstName-info">
+            Confirm a password
+          </span>
+          <span *ngIf="registrationService.formModel.get('Passwords.ConfirmPassword').touched && registrationService.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch"
+                class="e-error"
+                id="FirstName-info">
+            Those passwords didn't match
+          </span>
+        </div>
+      </div>
+      <div class="form-row-last">
+        <div class="form-checkbox" style="display:inline-block;padding-top: 16px;">
+          <label class="container">
+            <input type="checkbox" name="checkbox">
+            <span class="checkmark"></span>
+            <a href="#" class="text" style="margin-left: 10px;">Terms and Conditions</a>
+          </label>
+        </div>
+        <input type="submit" name="register" class="register" value="Register" style="display:inline-block;float: right;">
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="complete" class="form-v4-content">
+    <div class="form-left compete-message">
+      <h2>VERIFY YOUR EMAIL</h2>
+      <p class="text-1">We've sent an email message to the specified email "{{ registeredEmail }}".</p>
+      <p class="text-2"><span>Note:</span> If you have not received confirmation link, please press the button below to resend confirmation email.</p>
+      <div class="form-left-last">
+        <input type="submit" name="account" class="account" value="Resend Email" (click)="reResendEmail()">
+      </div>
+    </div>
+  </div>
+</div>

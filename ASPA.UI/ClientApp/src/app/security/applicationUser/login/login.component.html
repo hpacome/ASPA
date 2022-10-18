@@ -1,0 +1,49 @@
+<div class="page-content">
+  <div class="form-v4-content">
+    <div class="form-left">
+      <h2>INFOMATION</h2>
+      <p class="text-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.</p>
+      <p class="text-2"><span>Eu ultrices:</span> Vitae auctor eu augue ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.</p>
+      <div class="form-left-last">
+        <input type="submit" name="account" class="account" value="Create an account" (click)="gotoRegistration()">
+      </div>
+    </div>
+    <form class="form-detail" [formGroup]="loginService.formModel" autocomplete="off" (ngSubmit)="onSubmit()">
+      <h2>SIGN IN</h2>
+      <div class="form-row has-float-label" [ngClass]="{'input-invalid': loginService.formModel.get('Email').touched && loginService.formModel.get('Email').errors != null}">
+        <input type="text" formControlName="Email" id="Email" class="form-control input-text" placeholder=" " required>
+        <label for="Email">Email</label>
+        <span *ngIf="loginService.formModel.get('Email').touched && loginService.formModel.get('Email').errors?.required"
+              class="e-error"
+              id="FirstName-info">
+          Enter email address
+        </span>
+        <span *ngIf="loginService.formModel.get('Email').touched && loginService.formModel.get('Email').errors?.email"
+              class="e-error"
+              id="FirstName-info">
+          Enter a valid email address
+        </span>
+      </div>
+      <div class="form-row form-row-1 has-float-label" [ngClass]="{'input-invalid': loginService.formModel.get('Password').touched && loginService.formModel.get('Password').errors != null}">
+        <input type="password" formControlName="Password" id="Password" class="form-control input-text" placeholder=" " required>
+        <label for="Password">Password</label>
+        <span *ngIf="loginService.formModel.get('Password').touched && loginService.formModel.get('Password').errors?.required"
+              class="e-error"
+              id="FirstName-info">
+          Enter a password
+        </span>
+        <span *ngIf="loginService.formModel.get('Password').touched && loginService.formModel.get('Password').errors?.pattern"
+              class="e-error"
+              id="FirstName-info">
+          Use 8 characters or more with a mix of lowercase and upercase letters, numbers and symbols
+        </span>
+      </div>
+      <div class="form-row-last">
+        <div class="form-checkbox" style="display:inline-block;padding-top: 16px;">
+          <a href="#" class="text">Forgot password?</a>
+        </div>
+        <input type="submit" name="register" class="register" value="Login" style="display:inline-block;float: right;">
+      </div>
+    </form>
+  </div>
+</div>

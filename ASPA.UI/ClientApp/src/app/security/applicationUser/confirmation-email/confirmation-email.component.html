@@ -1,0 +1,20 @@
+<div class="page-content">
+  <div *ngIf="complete && validationSuccess" class="form-v4-content">
+    <div class="form-left compete-message">
+      <h2>VERIFY YOUR EMAIL</h2>
+      <p class="text-1">Validation success, Email : "{{ registeredEmail }}".</p>
+      <div class="form-left-last">
+        <input type="submit" name="account" class="account" value="Sign in" (click)="gotoLogin()">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="complete && !validationSuccess" class="form-v4-content">
+    <div class="form-left compete-message">
+      <h2>VERIFY YOUR EMAIL</h2>
+      <p class="text-1">Validation failed".</p>
+      <div class="form-left-last">
+        <input type="submit" name="account" class="account" value="Back to home" (click)="gotoHome()">
+      </div>
+    </div>
+  </div>
+</div>
